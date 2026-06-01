@@ -23,8 +23,7 @@ void* racunar_nit(void* arg) {
 
             int kasnjenje = r * 2;
 
-            printf("\t\tRacunar %d BACKOFF: k=%d, r=%d, kasnjenje=%d ms\n",
-       id, racunar[id].k, r, kasnjenje);
+            printf("Racunar %d BACKOFF: k=%d, r=%d, kasnjenje=%d ms\n",id, racunar[id].k, r, kasnjenje);
 
             usleep(kasnjenje * 1000);
         }else {

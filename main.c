@@ -11,19 +11,21 @@
 
 struct timeval tv;
 
+long long us() {
+    gettimeofday(&tv, NULL);
+    return (long long)tv.tv_sec * 1000000LL + tv.tv_usec;
+}
+
 int main(void) {
     sem_init(&semafor_magistrale, 0, 1);
 
-    // sem_wait(&semaformagistrale);
-    // sem_post(&semaformagistrale);
-
-    gettimeofday(&tv, NULL);
-    int vreme = tv.tv_usec;
+    long long vreme = us();
 
     magistrala.pt = 0;
     magistrala.racunar_id = -1;
     magistrala.brojac = 0;
     magistrala.zauzeta = 0;
+    magistrala.kolizija = 0;
 
     for (int i = 0;i<BRPC;i++) {
         racunar[i].stanje = 1;
@@ -50,11 +52,9 @@ int main(void) {
         pthread_join(niti[i], NULL);
     }
 
-
     pthread_join(nit_statistika, NULL);
 
     sem_destroy(&semafor_magistrale);
-
 
     return 0;
 }
