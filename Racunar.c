@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "Magistrala.h"
-
 volatile int simulacija_traje = 1;
 
 struct racunar racunar[BRPC];
@@ -23,9 +21,10 @@ void* racunar_nit(void* arg) {
 
             int kasnjenje = r * 2;
 
-            printf("Racunar %d BACKOFF: k=%d, r=%d, kasnjenje=%d ms\n",id, racunar[id].k, r, kasnjenje);
+            printf("Racunar %d backoff: k= %d, r= %d, kasnjenje= %d ms\n",id, racunar[id].k, r, kasnjenje);
 
             usleep(kasnjenje * 1000);
+
         }else {
             int cekanje_ms = 50 + rand() % 101; // 50-150 ms
             usleep(cekanje_ms * 1000);
@@ -46,9 +45,7 @@ void* racunar_nit(void* arg) {
         if (rez == 2) {
             racunar[id].stanje = 1;
         }
-
         printf("Racunar %d pokusava transmisiju (rez %d, stanje %d, k = %d)\n", id,rez,racunar[id].stanje,racunar[id].k);
     }
-
     return NULL;
 }

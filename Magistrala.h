@@ -22,5 +22,4 @@ int pokusaj_transmisiju(int id);
 
 void* statistika_transmisija(void* arg);
 
-
 #endif //RAF_PROJEKAT_OS_MAGISTRALA_H

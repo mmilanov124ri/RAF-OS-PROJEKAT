@@ -28,7 +28,7 @@ int pokusaj_transmisiju(int id) {
             magistrala.kolizija = 0;
             magistrala.pt = trenutno_vreme_u_us();
 
-            printf("Racunar %d ZAPOCEO transmisiju\n", id);
+            printf("Racunar %d zapoceo transmisiju\n", id);
 
             racunar[id].stanje = 0;
 
@@ -108,9 +108,9 @@ int pokusaj_transmisiju(int id) {
             if (preostalo>500) {
                 usleep(500);
             }
-            if (preostalo > 0) {
+            else if (preostalo > 0) {
                 usleep(preostalo);
-            } else {
+            }else{
                 usleep(100);
             }
         }

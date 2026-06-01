@@ -11,15 +11,8 @@
 
 struct timeval tv;
 
-long long us() {
-    gettimeofday(&tv, NULL);
-    return (long long)tv.tv_sec * 1000000LL + tv.tv_usec;
-}
-
 int main(void) {
     sem_init(&semafor_magistrale, 0, 1);
-
-    long long vreme = us();
 
     magistrala.pt = 0;
     magistrala.racunar_id = -1;
@@ -34,7 +27,6 @@ int main(void) {
 
     pthread_t nit_statistika;
     pthread_create(&nit_statistika, NULL, statistika_transmisija, NULL);
-
 
     pthread_t niti[BRPC];
     int ids[BRPC];

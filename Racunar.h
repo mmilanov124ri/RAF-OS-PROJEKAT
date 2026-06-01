@@ -12,7 +12,6 @@ struct racunar {
     int k; // broj uzasstopnih kolizija
 };
 
-
 extern struct racunar racunar[BRPC];
 
 void* racunar_nit(void* arg);
