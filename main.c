@@ -4,20 +4,15 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#include "D:\SVASTA\Programiranje\CLion\RAF PROJEKAT OS\Magistrala.h"
-#include "D:\SVASTA\Programiranje\CLion\RAF PROJEKAT OS\Racunar.h"
+#include "Magistrala.h"
+#include "Racunar.h"
 
 #define BRPC 10
 
 struct timeval tv;
 
-struct racunar racunar[BRPC];
-struct magistrala magistrala;
-
-sem_t semaformagistrale;
-
 int main(void) {
-    sem_init(&semaformagistrale, 0, 1);
+    sem_init(&semafor_magistrale, 0, 1);
 
     // sem_wait(&semaformagistrale);
     // sem_post(&semaformagistrale);
@@ -35,6 +30,10 @@ int main(void) {
         racunar[i].k = 0;
     }
 
+    pthread_t nit_statistika;
+    pthread_create(&nit_statistika, NULL, statistika_transmisija, NULL);
+
+
     pthread_t niti[BRPC];
     int ids[BRPC];
 
@@ -43,7 +42,8 @@ int main(void) {
         pthread_create(&niti[i], NULL, racunar_nit, &ids[i]);
     }
 
-    sleep(5);
+    //sleep(5);
+    sleep(60);
     simulacija_traje = 0;
 
     for (int i = 0; i < BRPC; i++) {
@@ -51,7 +51,9 @@ int main(void) {
     }
 
 
-    sem_destroy(&semaformagistrale);
+    pthread_join(nit_statistika, NULL);
+
+    sem_destroy(&semafor_magistrale);
 
 
     return 0;
