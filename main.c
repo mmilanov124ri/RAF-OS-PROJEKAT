@@ -42,8 +42,8 @@ int main(void) {
         pthread_create(&niti[i], NULL, racunar_nit, &ids[i]);
     }
 
-    //sleep(5);
-    sleep(60);
+    sleep(5);
+    //sleep(60);
     simulacija_traje = 0;
 
     for (int i = 0; i < BRPC; i++) {

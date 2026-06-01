@@ -5,11 +5,14 @@
 #ifndef RAF_PROJEKAT_OS_MAGISTRALA_H
 #define RAF_PROJEKAT_OS_MAGISTRALA_H
 
+#include <semaphore.h>
+
 struct magistrala {
     long long pt;
     int racunar_id;
     int brojac;
     int zauzeta;
+    int kolizija;
 };
 
 extern sem_t semafor_magistrale;
